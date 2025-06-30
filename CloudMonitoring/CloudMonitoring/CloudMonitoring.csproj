@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\cloudcomputing.png" />
+    <None Remove="Images\verified.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Syncfusion.SfChart.WPF" Version="*" />
+    <PackageReference Include="Syncfusion.SfGrid.WPF" Version="*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\cloudcomputing.png" />
+    <Resource Include="Images\verified.png" />
+  </ItemGroup>
+
+</Project>
