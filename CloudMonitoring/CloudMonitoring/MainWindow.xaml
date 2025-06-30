@@ -3,10 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CloudMonitoring"
         xmlns:dataGrid="http://schemas.syncfusion.com/wpf"
         xmlns:chart="clr-namespace:Syncfusion.UI.Xaml.Charts;assembly=Syncfusion.SfChart.WPF"
-        xmlns:local="clr-namespace:CloudMonitoring"
-        mc:Ignorable="d" Background="#EAEFFE" WindowState="Maximized">
+        mc:Ignorable="d"
+        Background="#EAEFFE" WindowState="Maximized">
 
     <Window.DataContext>
         <local:ViewModel x:Name="viewModel"/>
@@ -41,13 +42,14 @@
         <StackPanel Margin="15">
             
             <StackPanel Orientation="Horizontal">
-                <Image Source="Images/cloudcomputing.png" Width="60" Height="60" Margin="0,0,10,0"/>
+                <Image Source="/Images/cloudcomputing.png" Width="60" Height="60" Margin="0,0,10,0"/>
                 <TextBlock Text="Cloud Performance Monitoring" FontSize="25" FontWeight="Medium" VerticalAlignment="Center"/>
             </StackPanel>
-            
+
             <CheckBox Content="Activate Data Polling" FontSize="15" FontWeight="Medium" VerticalContentAlignment="Center" VerticalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" HorizontalAlignment="Right" Margin="10"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+             
                 <Border Background="#FFFBFE" Margin="0,0,15,0" Style="{StaticResource instanceinfoborderStyle}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="Instance Type" Style="{StaticResource headerlabelStyle}"/>
@@ -95,6 +97,7 @@
                         </StackPanel>
                     </StackPanel>
                 </Border>
+              
             </StackPanel>
 
             <Grid Margin="0,15,0,0">
@@ -107,8 +110,8 @@
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="Instances" Style="{StaticResource headerlabelStyle}" Margin="0,0,0,10"/>
                         <dataGrid:SfDataGrid ItemsSource="{Binding InstanceList}"
-                         AutoGenerateColumns="False" HeaderStyle="{StaticResource headerStyle}"
-                         ColumnSizer="Star" RowHeight="40" HeaderRowHeight="40">
+                     AutoGenerateColumns="False" HeaderStyle="{StaticResource headerStyle}"
+                     ColumnSizer="Star" RowHeight="40" HeaderRowHeight="40">
                             <dataGrid:SfDataGrid.Columns>
                                 <dataGrid:GridTextColumn MappingName="InstanceID" HeaderText="ID" TextAlignment="Center"/>
                                 <dataGrid:GridTextColumn MappingName="Type" HeaderText="Type" TextAlignment="Center"/>
@@ -133,11 +136,11 @@
                         <Border Height="165" Width="361" Margin="0,0,7.5,0" CornerRadius="8" Background="#FFFBFE" Padding="5">
                             <chart:SfChart>
                                 <chart:DoughnutSeries ItemsSource="{Binding CPUDatasets}"
-                                          XBindingPath="Name"
-                                          YBindingPath="Value"
-                                          EnableAnimation="True"
-                                          Palette="Custom"
-                                          DoughnutCoefficient="0.5">
+                                      XBindingPath="Name"
+                                      YBindingPath="Value"
+                                      EnableAnimation="True"
+                                      Palette="Custom"
+                                      DoughnutCoefficient="0.5">
                                     <chart:DoughnutSeries.ColorModel>
                                         <chart:ChartColorModel>
                                             <chart:ChartColorModel.CustomBrushes>
@@ -160,11 +163,11 @@
                         <Border Height="165" Width="361" Margin="7.5,0,0,0" Background="#FFFBFE" CornerRadius="8">
                             <chart:SfChart>
                                 <chart:DoughnutSeries ItemsSource="{Binding MemoryDatasets}"
-                                                      XBindingPath="Name"
-                                                      YBindingPath="Value"
-                                                      EnableAnimation="True"
-                                                      Palette="Custom"
-                                                      DoughnutCoefficient="0.5">
+                                                  XBindingPath="Name"
+                                                  YBindingPath="Value"
+                                                  EnableAnimation="True"
+                                                  Palette="Custom"
+                                                  DoughnutCoefficient="0.5">
                                     <chart:DoughnutSeries.ColorModel>
                                         <chart:ChartColorModel>
                                             <chart:ChartColorModel.CustomBrushes>
@@ -186,22 +189,22 @@
                         </Border>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,7.5,0,0">
-                        
+
                         <Border Height="165" Width="361" Margin="0,0,7.5,0" Background="#FFFBFE" CornerRadius="8">
                             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                                <Image Source="Images/verified.png" Width="80" Height="80"/>
+                                <Image Source="/Images/verified.png" Width="80" Height="80"/>
                                 <TextBlock Text="Health" FontSize="17" FontWeight="Medium" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                             </StackPanel>
                         </Border>
-                        
+
                         <Border Height="165" Width="361" Margin="7.5,0,0,0" Background="#FFFBFE" CornerRadius="8">
                             <chart:SfChart>
                                 <chart:DoughnutSeries ItemsSource="{Binding DiskSpaceData}"
-                                                      XBindingPath="Name"
-                                                      YBindingPath="Value"
-                                                      EnableAnimation="True"
-                                                      Palette="Custom"
-                                                      DoughnutCoefficient="0.5">
+                                                  XBindingPath="Name"
+                                                  YBindingPath="Value"
+                                                  EnableAnimation="True"
+                                                  Palette="Custom"
+                                                  DoughnutCoefficient="0.5">
                                     <chart:DoughnutSeries.ColorModel>
                                         <chart:ChartColorModel>
                                             <chart:ChartColorModel.CustomBrushes>
@@ -244,10 +247,10 @@
                             </chart:SfChart.SecondaryAxis>
 
                             <chart:BarSeries ItemsSource="{Binding DiskUsageDatasets}"
-                                             XBindingPath="Name"
-                                             YBindingPath="Value"
-                                             EnableAnimation="True"
-                                             Palette="Custom" chart:ChartSeriesBase.Spacing="0.5">
+                                         XBindingPath="Name"
+                                         YBindingPath="Value"
+                                         EnableAnimation="True"
+                                         Palette="Custom" chart:ChartSeriesBase.Spacing="0.5">
                                 <chart:BarSeries.ColorModel>
                                     <chart:ChartColorModel>
                                         <chart:ChartColorModel.CustomBrushes>
@@ -287,11 +290,11 @@
                             </chart:SfChart.SecondaryAxis>
 
                             <chart:SplineSeries x:Name="series1" ItemsSource="{Binding RealTimeChartData}"
-                                             XBindingPath="Time"
-                                             YBindingPath="CPUUsage"
-                                             EnableAnimation="True"
-                                             Interior="#2196F3"
-                                             ShowTooltip="True">
+                                         XBindingPath="Time"
+                                         YBindingPath="CPUUsage"
+                                         EnableAnimation="True"
+                                         Interior="#2196F3"
+                                         ShowTooltip="True">
                                 <chart:SplineSeries.AdornmentsInfo>
                                     <chart:ChartAdornmentInfo ShowMarker="True" Symbol="Ellipse" SymbolInterior="#2196F3" SymbolWidth="7" SymbolHeight="7"/>
                                 </chart:SplineSeries.AdornmentsInfo>
@@ -333,13 +336,13 @@
                             </chart:SfChart.Legend>
 
                             <chart:SplineSeries ItemsSource="{Binding RealTimeChartData}"
-                                                 XBindingPath="Time"
-                                                 YBindingPath="NetworkIn"
-                                                 EnableAnimation="True"
-                                                 Interior="#CDDE1F"
-                                                LegendIcon="Circle"
-                                                Label="NetworkIn"
-                                                ShowTooltip="True">
+                                             XBindingPath="Time"
+                                             YBindingPath="NetworkIn"
+                                             EnableAnimation="True"
+                                             Interior="#CDDE1F"
+                                            LegendIcon="Circle"
+                                            Label="NetworkIn"
+                                            ShowTooltip="True">
                                 <chart:SplineSeries.AdornmentsInfo>
                                     <chart:ChartAdornmentInfo ShowMarker="True" SymbolInterior="#CDDE1F" Symbol="Ellipse" SymbolWidth="7" SymbolHeight="7"/>
                                 </chart:SplineSeries.AdornmentsInfo>
@@ -354,13 +357,13 @@
                             </chart:SplineSeries>
 
                             <chart:SplineSeries ItemsSource="{Binding RealTimeChartData}"
-                                                 XBindingPath="Time"
-                                                 YBindingPath="NetworkOut"
-                                                 EnableAnimation="True"
-                                                 Interior="#FF477E"
-                                                LegendIcon="Circle"
-                                                Label="NetworkOut"
-                                                ShowTooltip="True">
+                                             XBindingPath="Time"
+                                             YBindingPath="NetworkOut"
+                                             EnableAnimation="True"
+                                             Interior="#FF477E"
+                                            LegendIcon="Circle"
+                                            Label="NetworkOut"
+                                            ShowTooltip="True">
                                 <chart:SplineSeries.AdornmentsInfo>
                                     <chart:ChartAdornmentInfo ShowMarker="True" SymbolInterior="#FF477E" Symbol="Ellipse" SymbolWidth="7" SymbolHeight="7"/>
                                 </chart:SplineSeries.AdornmentsInfo>
@@ -395,13 +398,13 @@
                             </chart:SfChart.Legend>
 
                             <chart:ColumnSeries ItemsSource="{Binding RealTimeChartData}"
-                                         XBindingPath="Time"
-                                         YBindingPath="Read"
-                                         EnableAnimation="True"
-                                         Interior="#2196F3"
-                                        LegendIcon="SeriesType" SegmentSpacing="0.2"
-                                        Label="Read"
-                                                ShowTooltip="True">
+                                     XBindingPath="Time"
+                                     YBindingPath="Read"
+                                     EnableAnimation="True"
+                                     Interior="#2196F3"
+                                    LegendIcon="SeriesType" SegmentSpacing="0.2"
+                                    Label="Read"
+                                            ShowTooltip="True">
                                 <chart:ColumnSeries.CustomTemplate>
                                     <DataTemplate>
                                         <Canvas>
@@ -420,14 +423,14 @@
                             </chart:ColumnSeries>
 
                             <chart:ColumnSeries ItemsSource="{Binding RealTimeChartData}"
-                                     XBindingPath="Time"
-                                     YBindingPath="Write"
-                                     EnableAnimation="True"
-                                     AnimationDuration="0:0:1.0"
-                                     Interior="#8854D9"
-                                    LegendIcon="SeriesType" SegmentSpacing="0.2"
-                                    Label="Write"
-                                                ShowTooltip="True">
+                                 XBindingPath="Time"
+                                 YBindingPath="Write"
+                                 EnableAnimation="True"
+                                 AnimationDuration="0:0:1.0"
+                                 Interior="#8854D9"
+                                LegendIcon="SeriesType" SegmentSpacing="0.2"
+                                Label="Write"
+                                            ShowTooltip="True">
                                 <chart:ColumnSeries.CustomTemplate>
                                     <DataTemplate>
                                         <Canvas>

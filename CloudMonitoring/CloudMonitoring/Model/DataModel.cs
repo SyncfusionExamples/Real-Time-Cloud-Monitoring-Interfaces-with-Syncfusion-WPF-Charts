@@ -2,20 +2,16 @@
 
 namespace CloudMonitoring
 {
-    public class CircularChartModel
+    public class CloudMetricsDataModel
     {
         public string? Name { get; set; }
         public double Value { get; set; }
     }
 
-    public class DiskUsageModel
+    public class CloudPerformanceDataModel
     {
         public string? Name { get; set; }
         public double Value { get; set; }
-    }
-
-    public class RealTimeChartModel
-    {
         public DateTime Time{ get; set; }
         public double CPUUsage{ get; set; }
         public double NetworkIn {  get; set; }
@@ -27,15 +23,10 @@ namespace CloudMonitoring
     public class InstanceInfo
     {
         public string InstanceID {  get; set; }
-
         public string Type { get; set; }
-
         public string State { get; set; }
-        
         public string PublicIP { get; set; }
-        
         public string Health { get; set; }
-        
         public Geometry HealthIconPath
         {
             get
@@ -49,7 +40,6 @@ namespace CloudMonitoring
                 };
             }
         }
-
         public Brush HealthColor
         {
             get
@@ -63,7 +53,6 @@ namespace CloudMonitoring
                 };
             }
         }
-
         public Brush HealthBackground
         {
             get
@@ -80,11 +69,11 @@ namespace CloudMonitoring
 
         public InstanceInfo(string instanceID, string type, string publicIP, string state, string health)
         {
-            this.InstanceID = instanceID;
-            this.State = type;
-            this.PublicIP = publicIP;
-            this.Type = state;
-            this.Health = health;
+            InstanceID = instanceID;
+            State = type;
+            PublicIP = publicIP;
+            Type = state;
+            Health = health;
         }
     }
 }

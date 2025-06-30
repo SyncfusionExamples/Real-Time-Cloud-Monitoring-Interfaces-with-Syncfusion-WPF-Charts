@@ -1,8 +1,6 @@
-﻿using Syncfusion.UI.Xaml.Charts;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace CloudMonitoring
@@ -12,8 +10,8 @@ namespace CloudMonitoring
         private string[] diskusageItems = ["Downloads", "Documents", "RootGB", "MediaGB"];
         private const int MaxPoints = 10;
 
-        private ObservableCollection<RealTimeChartModel> realtimechartData = new();
-        public ObservableCollection<RealTimeChartModel> RealTimeChartData
+        private ObservableCollection<CloudPerformanceDataModel> realtimechartData = new();
+        public ObservableCollection<CloudPerformanceDataModel> RealTimeChartData
         {
             get { return realtimechartData; }
             set
@@ -26,8 +24,8 @@ namespace CloudMonitoring
             }
         }
 
-        private ObservableCollection<CircularChartModel> cpuDatasets = new();
-        public ObservableCollection<CircularChartModel> CPUDatasets
+        private ObservableCollection<CloudMetricsDataModel> cpuDatasets = new();
+        public ObservableCollection<CloudMetricsDataModel> CPUDatasets
         {
             get { return cpuDatasets; }
             set
@@ -40,8 +38,8 @@ namespace CloudMonitoring
             }
         }
 
-        private ObservableCollection<CircularChartModel> memoryDatasets = new();
-        public ObservableCollection<CircularChartModel> MemoryDatasets
+        private ObservableCollection<CloudMetricsDataModel> memoryDatasets = new();
+        public ObservableCollection<CloudMetricsDataModel> MemoryDatasets
         {
             get { return memoryDatasets; }
             set
@@ -53,8 +51,8 @@ namespace CloudMonitoring
             }
         }
 
-        private ObservableCollection<CircularChartModel>diskspaceData = new();
-        public ObservableCollection<CircularChartModel>DiskSpaceData
+        private ObservableCollection<CloudMetricsDataModel>diskspaceData = new();
+        public ObservableCollection<CloudMetricsDataModel>DiskSpaceData
         {
             get { return diskspaceData; }
             set
@@ -66,8 +64,8 @@ namespace CloudMonitoring
             }
         }
 
-        private ObservableCollection<DiskUsageModel> diskUsageDatasets = new();
-        public ObservableCollection<DiskUsageModel> DiskUsageDatasets
+        private ObservableCollection<CloudPerformanceDataModel> diskUsageDatasets = new();
+        public ObservableCollection<CloudPerformanceDataModel> DiskUsageDatasets
         {
             get { return diskUsageDatasets; }
             set
@@ -82,15 +80,15 @@ namespace CloudMonitoring
         internal DispatcherTimer dispatcherTimer;
         private Random _random = new Random();
 
-        private ObservableCollection<InstanceInfo> _instanceList;
-        public ObservableCollection<InstanceInfo> InstanceList
+        private ObservableCollection<InstanceInfo>? _instanceList;
+        public ObservableCollection<InstanceInfo>? InstanceList
         {
             get { return _instanceList; }
             set { _instanceList = value; }
         }
 
-        private string cputext;
-        public string CPUText
+        private string? cputext;
+        public string? CPUText
         {
             get { return  cputext; }
             set
@@ -103,8 +101,8 @@ namespace CloudMonitoring
             }
         }
 
-        private string memoryText;
-        public string MemoryText
+        private string? memoryText;
+        public string? MemoryText
         {
             get { return memoryText; }
             set
@@ -117,8 +115,8 @@ namespace CloudMonitoring
             }
         }
 
-        private string diskText;
-        public string DiskText
+        private string? diskText;
+        public string? DiskText
         {
             get { return diskText; }
             set
@@ -135,43 +133,43 @@ namespace CloudMonitoring
         {
             InstanceList = GetInstanceDataCollection();
 
-            RealTimeChartData = new ObservableCollection<RealTimeChartModel>();
+            RealTimeChartData = new ObservableCollection<CloudPerformanceDataModel>();
             
-            CPUDatasets = new ObservableCollection<CircularChartModel>
+            CPUDatasets = new ObservableCollection<CloudMetricsDataModel>
             {
-                 new CircularChartModel { Name = "Used", Value = 40 },
-                 new CircularChartModel { Name = "Free", Value = 60 }
+                 new CloudMetricsDataModel { Name = "Used", Value = 40 },
+                 new CloudMetricsDataModel { Name = "Free", Value = 60 }
             };
 
             CPUText = 40.15.ToString() + "%";
 
-            MemoryDatasets = new ObservableCollection<CircularChartModel>
+            MemoryDatasets = new ObservableCollection<CloudMetricsDataModel>
             {
-                 new CircularChartModel { Name = "Used", Value = 24 },
-                 new CircularChartModel { Name = "Free", Value = 1000 }
+                 new CloudMetricsDataModel { Name = "Used", Value = 24 },
+                 new CloudMetricsDataModel { Name = "Free", Value = 1000 }
             };
 
             MemoryText = 24.35.ToString() + " MB";
 
-            DiskSpaceData = new ObservableCollection<CircularChartModel>
+            DiskSpaceData = new ObservableCollection<CloudMetricsDataModel>
             {
-                 new CircularChartModel { Name = "Used", Value = 25 },
-                 new CircularChartModel { Name = "Free", Value = 75 }
+                 new CloudMetricsDataModel { Name = "Used", Value = 25 },
+                 new CloudMetricsDataModel { Name = "Free", Value = 75 }
             };
 
             DiskText = 25.ToString() + " GB";
 
-            DiskUsageDatasets = new ObservableCollection<DiskUsageModel>()
+            DiskUsageDatasets = new ObservableCollection<CloudPerformanceDataModel>()
             {
-                new DiskUsageModel{ Name = "Downloads", Value = 15},
-                new DiskUsageModel{ Name = "Documents", Value = 5},
-                new DiskUsageModel{ Name = "RootGB", Value = 5},
-                new DiskUsageModel{ Name = "MediaGB", Value = 5}
+                new CloudPerformanceDataModel{ Name = "Downloads", Value = 15},
+                new CloudPerformanceDataModel{ Name = "Documents", Value = 5},
+                new CloudPerformanceDataModel{ Name = "RootGB", Value = 5},
+                new CloudPerformanceDataModel{ Name = "MediaGB", Value = 5}
             };
 
             for (int i = 0; i < MaxPoints; i++)
             {
-                RealTimeChartData.Add(new RealTimeChartModel
+                RealTimeChartData.Add(new CloudPerformanceDataModel
                 {
                     Time = DateTime.Now.AddSeconds(i - MaxPoints),
                     CPUUsage = _random.Next(10, 85),
@@ -191,22 +189,22 @@ namespace CloudMonitoring
 
         }
 
-        private void UpdateData(object sender, EventArgs e)
+        private void UpdateData(object? sender, EventArgs e)
         {
             double cpuUsed = _random.Next(0, 100);
             double cpuFree = 100 - cpuUsed;
             
             CPUDatasets.Clear();
-            CPUDatasets.Add(new CircularChartModel() { Name = "Used", Value = cpuUsed });
-            CPUDatasets.Add(new CircularChartModel() { Name = "Free", Value = cpuFree });
+            CPUDatasets.Add(new CloudMetricsDataModel() { Name = "Used", Value = cpuUsed });
+            CPUDatasets.Add(new CloudMetricsDataModel() { Name = "Free", Value = cpuFree });
             CPUText = cpuUsed.ToString() + "%";
 
             double memoryUsed = _random.Next(20, 100);
             double memoryFree = 1024 - memoryUsed;
 
             MemoryDatasets.Clear();
-            MemoryDatasets.Add(new CircularChartModel() { Name = "Used", Value = memoryUsed });
-            MemoryDatasets.Add(new CircularChartModel() { Name = "Free", Value = memoryFree });
+            MemoryDatasets.Add(new CloudMetricsDataModel() { Name = "Used", Value = memoryUsed });
+            MemoryDatasets.Add(new CloudMetricsDataModel() { Name = "Free", Value = memoryFree });
             MemoryText = memoryUsed.ToString() + " MB";
 
             double diskUsed = 0;
@@ -215,7 +213,7 @@ namespace CloudMonitoring
             foreach (var item in diskusageItems)
             {
                 double value = _random.Next(5, 15);
-                DiskUsageDatasets.Add(new DiskUsageModel() { Name = item, Value = value });
+                DiskUsageDatasets.Add(new CloudPerformanceDataModel() { Name = item, Value = value });
                 diskUsed += value;
             }
 
@@ -223,8 +221,8 @@ namespace CloudMonitoring
             double diskFree = 100 - diskUsed;
 
             DiskSpaceData.Clear();
-            DiskSpaceData.Add(new CircularChartModel() { Name = "Used", Value = diskUsed });
-            DiskSpaceData.Add(new CircularChartModel() { Name = "Free", Value = diskFree });
+            DiskSpaceData.Add(new CloudMetricsDataModel() { Name = "Used", Value = diskUsed });
+            DiskSpaceData.Add(new CloudMetricsDataModel() { Name = "Free", Value = diskFree });
 
             UpdateRealTimeData();
         }
@@ -234,7 +232,7 @@ namespace CloudMonitoring
             if (RealTimeChartData.Count >= MaxPoints)
                 RealTimeChartData.RemoveAt(0);
 
-            RealTimeChartData.Add(new RealTimeChartModel
+            RealTimeChartData.Add(new CloudPerformanceDataModel
             {
                 Time = DateTime.Now,
                 CPUUsage = _random.Next(10, 85),
@@ -259,7 +257,7 @@ namespace CloudMonitoring
         }
 
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
