@@ -35,4 +35,4 @@ Path too long exception
 
 If you are facing a path too long exception when building this example project, close Visual Studio and rename the repository to short and build the project.
 
-For a step-by-step procedure, refer to the [Cloud Monitoring blog post]()
+For a step-by-step procedure, refer to the [Cloud Monitoring blog post](https://www.syncfusion.com/blogs/post/real-time-cloud-monitoring-wpf-charts)
