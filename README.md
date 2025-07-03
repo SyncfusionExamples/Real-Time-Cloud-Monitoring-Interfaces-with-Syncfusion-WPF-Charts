@@ -28,11 +28,11 @@ The [Syncfusion WPF SfChart](https://help.syncfusion.com/wpf/charts/getting-star
 By integrating these Syncfusion controls, the cloud monitoring solution delivers a seamless, data-driven experience—empowering users to effortlessly assess and understand the current status of their cloud infrastructure.
 
 After executing these code examples, we will get the output that resembles the following image.
-![Screenshot 2025-06-30 123635](https://github.com/user-attachments/assets/43f6beb6-4425-42d2-8cc5-8f5683a69acd)
+![blogsample](https://github.com/user-attachments/assets/540f039b-23b8-4463-8a7a-64b155d9e66b)
 
 ### Troubleshooting
 Path too long exception
 
 If you are facing a path too long exception when building this example project, close Visual Studio and rename the repository to short and build the project.
 
-For a step-by-step procedure, refer to the [Cloud Monitoring blog post]()
+For a step-by-step procedure, refer to the [Cloud Monitoring blog post](https://www.syncfusion.com/blogs/post/real-time-cloud-monitoring-wpf-charts)
